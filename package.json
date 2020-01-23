@@ -12,7 +12,7 @@
     "start": "npm run build && npm run launch",
     "launch": "node dist/src/index.js",
     "dev": "concurrently 'yarn watch-build' 'nodemon dist/src/index.js'",
-    "prettier-all": "prettier '{src,examples,setup}/**/*.{ts,js,json}' --write",
+    "prettier-all": "prettier '{src,examples}/**/*.{ts,js,json}' --write",
     "watch-build": "onchange '{src,examples}/**/*.ts' -- yarn build-babel",
     "watch-prettier": "onchange '{src,examples}/**/*.{ts,json}' -- prettier --write {{changed}}",
     "generate-docs": "yarn generate-routes && typedoc --out docs ./src",
@@ -23,11 +23,6 @@
     "postinstall": "npm run check-update",
     "publish-package": "npm publish --access public",
     "snyk-protect": "snyk protect"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn increment-package && yarn prettier-all && git add ."
-    }
   },
   "engines": {
     "node": ">= 10.16.0"

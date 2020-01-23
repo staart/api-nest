@@ -1,15 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { open } from 'geolite2-redist';
-import maxmind, { CityResponse, Reader } from 'maxmind';
+import { Injectable } from "@nestjs/common";
+import { open } from "geolite2-redist";
+import maxmind, { CityResponse, Reader } from "maxmind";
 
 @Injectable()
 export class GeolocationService {
   lookup?: Reader<CityResponse>;
 
   async initializeService() {
-    this.lookup = await open<CityResponse>('GeoLite2-City', path =>
-      maxmind.open(path)
-    );
+    if (!this.lookup)
+      this.lookup = await open<CityResponse>("GeoLite2-City", path =>
+        maxmind.open(path)
+      );
   }
 
   async getGeolocationFromIp(ipAddress: string) {

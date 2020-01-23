@@ -16,7 +16,9 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle("Staart API")
-    .setDescription("Staart API is a backend starter for SaaS startups. Using the following APIs, you can create user accounts, teams, set up recurring billing, and more.")
+    .setDescription(
+      "Staart API is a backend starter for SaaS startups. Using the following APIs, you can create user accounts, teams, set up recurring billing, and more."
+    )
     .setVersion("2.0")
     .build();
   const document = SwaggerModule.createDocument(app, options);

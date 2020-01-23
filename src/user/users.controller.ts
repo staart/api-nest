@@ -1,5 +1,12 @@
 import { Controller, Ip } from "@nestjs/common";
-import { Crud, Override, ParsedRequest, CrudRequest, ParsedBody, CrudController } from "@nestjsx/crud";
+import {
+  Crud,
+  Override,
+  ParsedRequest,
+  CrudRequest,
+  ParsedBody,
+  CrudController
+} from "@nestjsx/crud";
 import { User } from "./user.entity";
 import { UsersService } from "./users.service";
 
@@ -8,10 +15,7 @@ import { UsersService } from "./users.service";
     type: User
   },
   query: {
-    exclude: [
-      "password",
-      "twoFactorSecret"
-    ]
+    exclude: ["password", "twoFactorSecret"]
   }
 })
 @Controller("users")
@@ -28,6 +32,9 @@ export class UsersController {
     @ParsedBody() dto: User,
     @Ip() ipAddress: string
   ) {
-    return this.base.createOneBase(req, await this.service.addDefaultValuesToNewUser(dto, ipAddress));
+    return this.base.createOneBase(
+      req,
+      await this.service.addDefaultValuesToNewUser(dto, ipAddress)
+    );
   }
 }

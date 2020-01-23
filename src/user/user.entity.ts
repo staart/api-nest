@@ -1,7 +1,18 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
-import { IsOptional, IsDefined, IsString, IsNumber, IsBoolean, IsEnum } from "class-validator";
+import {
+  IsOptional,
+  IsDefined,
+  IsString,
+  IsNumber,
+  IsBoolean,
+  IsEnum
+} from "class-validator";
 import { CrudValidationGroups } from "@nestjsx/crud";
-import { UserRoles, UserGenders, UserNotificationEmails } from "./user.interfaces";
+import {
+  UserRoles,
+  UserGenders,
+  UserNotificationEmails
+} from "./user.interfaces";
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 

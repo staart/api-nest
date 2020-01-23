@@ -4,6 +4,7 @@
   "jsRules": {
     "no-unused-expression": true
   },
+  "experimentalDecorators": true,
   "rules": {
     "member-access": [false],
     "ordered-imports": [false],

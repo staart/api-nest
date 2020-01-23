@@ -7,6 +7,7 @@ import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Connection } from "typeorm";
 import { User } from "./user/user.entity";
+import { UsersModule } from "./user/users.module";
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { User } from "./user/user.entity";
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, "..", "static")
-    })
+    }),
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService]

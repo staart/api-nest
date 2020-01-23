@@ -1,5 +1,14 @@
 import { NestFactory } from "@nestjs/core";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import { CrudConfigService } from "@nestjsx/crud";
+
+CrudConfigService.load({
+  query: {
+    limit: 25,
+    maxLimit: 100
+  }
+});
+
 import { AppModule } from "./app.module";
 
 async function bootstrap() {

@@ -6,6 +6,12 @@ import { UsersService } from "./users.service";
 @Crud({
   model: {
     type: User
+  },
+  query: {
+    exclude: [
+      "password",
+      "twoFactorSecret"
+    ]
   }
 })
 @Controller("users")

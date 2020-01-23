@@ -37,6 +37,8 @@
     "@nestjsx/crud-typeorm": "^4.4.1",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.0",
+    "geolite2-redist": "^1.0.3",
+    "maxmind": "^4.1.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",

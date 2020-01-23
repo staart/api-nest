@@ -22,8 +22,7 @@ export class User {
   @Column()
   name: string;
 
-  @IsOptional({ groups: [UPDATE] })
-  @IsDefined({ groups: [CREATE] })
+  @IsOptional({ always: true })
   @IsString({ always: true })
   @Column()
   nickname: string;

@@ -15,10 +15,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const options = new DocumentBuilder()
-    .setTitle("Cats example")
-    .setDescription("The cats API description")
-    .setVersion("1.0")
-    .addTag("cats")
+    .setTitle("Staart API")
+    .setDescription("Staart API is a backend starter for SaaS startups. Using the following APIs, you can create user accounts, teams, set up recurring billing, and more.")
+    .setVersion("2.0")
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup("api", app, document);

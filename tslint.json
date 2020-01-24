@@ -4,7 +4,6 @@
   "jsRules": {
     "no-unused-expression": true
   },
-  "experimentalDecorators": true,
   "rules": {
     "member-access": [false],
     "ordered-imports": [false],
@@ -12,7 +11,8 @@
     "member-ordering": [false],
     "interface-name": [false],
     "arrow-parens": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-console": false
   },
   "rulesDirectory": []
 }

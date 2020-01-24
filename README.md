@@ -41,3 +41,8 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Pre-production
+
+- Remove `"no-console": false` rule from `tslint.json`
+- Migrate TSLint to ESLint

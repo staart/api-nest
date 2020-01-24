@@ -28,7 +28,7 @@ describe("GeolocationService", () => {
       const geolocation = await geolocationService.getGeolocationFromIp(
         "182.64.221.140"
       );
-      expect(geolocation.city).toBe("New Delhi");
+      expect(geolocation.city.names.en).toBe("New Delhi");
     });
 
     it("gets correct timezone", async () => {

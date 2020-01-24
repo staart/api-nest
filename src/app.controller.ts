@@ -12,7 +12,7 @@ export class AppController {
   }
 
   @UseGuards(AuthGuard("local"))
-  @Post('auth/login')
+  @Post("auth/login")
   async login(@Request() req: any) {
     return req.user;
   }

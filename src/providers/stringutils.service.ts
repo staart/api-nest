@@ -7,6 +7,13 @@ export class StringUtilsService {
   }
 
   upperFirstAndLastWord(string: string) {
-    return string.split(" ").map((word, index) => index === 0 || index === string.length - 1 ? this.upperFirst(word) : word).join(" ");
+    return string
+      .split(" ")
+      .map((word, index) =>
+        index === 0 || index === string.length - 1
+          ? this.upperFirst(word)
+          : word
+      )
+      .join(" ");
   }
 }

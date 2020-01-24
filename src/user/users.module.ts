@@ -10,7 +10,12 @@ import { ShortIdService } from "src/providers/shortid.service";
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
-  providers: [UsersService, GeolocationService, StringUtilsService, ShortIdService],
+  providers: [
+    UsersService,
+    GeolocationService,
+    StringUtilsService,
+    ShortIdService
+  ],
   controllers: [UsersController],
   exports: [UsersService]
 })

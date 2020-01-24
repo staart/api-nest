@@ -52,3 +52,4 @@ $ npm run test:cov
 
 - Remove `"no-console": false` rule from `tslint.json`
 - Migrate TSLint to ESLint
+- Remove `--forceExit` flag from Jest test, add `afterAll()` to close geolocation

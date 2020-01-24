@@ -9,6 +9,7 @@ import { GeolocationService } from "src/providers/geolocation.service";
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
   providers: [UsersService, GeolocationService],
-  controllers: [UsersController]
+  controllers: [UsersController],
+  exports: [UsersService]
 })
 export class UsersModule {}

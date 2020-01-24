@@ -23,8 +23,8 @@ export class User {
   id: number;
 
   @IsOptional({ always: true })
-  @IsEnum(UserRoles, { always: true })
-  @Column({ type: "int", default: UserRoles.USER })
+  @IsString({ always: true })
+  @Column({ length: "4", default: UserRoles.USER })
   role: UserRoles;
 
   @IsOptional({ groups: [UPDATE] })
@@ -54,8 +54,8 @@ export class User {
   primaryEmailId: number;
 
   @IsOptional({ always: true })
-  @IsEnum(UserNotificationEmails, { always: true })
-  @Column({ type: "int", default: UserNotificationEmails.ACCOUNT })
+  @IsString({ always: true })
+  @Column({ length: "3", default: UserNotificationEmails.ACCOUNT })
   notificationEmails: UserNotificationEmails;
 
   /**

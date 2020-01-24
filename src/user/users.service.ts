@@ -14,7 +14,18 @@ export class UsersService extends TypeOrmCrudService<User> {
     super(repo);
   }
 
-  async addDefaultValuesToNewUser(dto: User, ipAddress: string) {
+  public async safeNewUserValue(dto: User, ipAddress: string) {
+    dto = this.deleteSudoValuesFromNewUser(dto);
+    dto = await this.addDefaultValuesToNewUser(dto, ipAddress);
+    return dto;
+  }
+
+  private deleteSudoValuesFromNewUser(dto: User) {
+    delete dto.role;
+    return dto;
+  }
+
+  private async addDefaultValuesToNewUser(dto: User, ipAddress: string) {
     dto.nickname = dto.nickname || dto.name.split(" ")[0];
     if (!dto.countryCode || !dto.timezone) {
       try {

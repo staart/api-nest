@@ -1,6 +1,6 @@
 export enum UserRoles {
-  SUDO = 9,
-  USER = 1
+  SUDO = "sudo",
+  USER = "user"
 }
 
 export enum UserGenders {
@@ -11,9 +11,9 @@ export enum UserGenders {
 }
 
 export enum UserNotificationEmails {
-  SECURITY = 1,
-  ACCOUNT = 2,
-  CHANGELOG = 3,
-  MARKETING = 4,
-  THIRD_PARTY = 5
+  SECURITY = "sec",
+  ACCOUNT = "acc",
+  CHANGELOG = "cha",
+  MARKETING = "mar",
+  THIRD_PARTY = "thi"
 }

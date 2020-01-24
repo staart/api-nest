@@ -34,9 +34,7 @@ export class UsersController {
     @ParsedBody() dto: User,
     @Ip() ipAddress: string
   ) {
-    return this.base.createOneBase(
-      req,
-      await this.service.addDefaultValuesToNewUser(dto, ipAddress)
-    );
+    dto = await this.service.safeNewUserValue(dto, ipAddress);
+    return this.base.createOneBase(req, dto);
   }
 }

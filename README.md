@@ -2,7 +2,13 @@
 
 Staart is a Node.js backend starter for SaaS startups written in TypeScript. It has built-in user management and authentication, billing, organizations, GDPR tools, and more.
 
-This branch contains v2 of Staart API written using NestJS.
+**This branch contains the development version of Staart API written using NestJS. [Visit stable v1 repo →](https://github.com/staart/api)**
+
+|  | Status |
+| - | - |
+| Build | [![GitHub Actions](https://github.com/staart/api-v2/workflows/Node%20CI/badge.svg)](https://github.com/staart/api-v2/actions) [![Travis CI](https://img.shields.io/travis/staart/api-v2?label=Travis%20CI)](https://travis-ci.org/staart/api-v2) [![Circle CI](https://img.shields.io/circleci/build/github/staart/api-v2?label=Circle%20CI)](https://circleci.com/gh/staart/api-v2) [![Azure Pipelines](https://dev.azure.com/staart/api-v2/_apis/build/status/staart.api-v2?branchName=master)](https://dev.azure.com/staart/api-v2/_build/latest?definitionId=8&branchName=master) |
+| Dependencies | [![Dependencies](https://img.shields.io/david/staart/api-v2.svg)](https://david-dm.org/staart/api-v2) [![Dev dependencies](https://img.shields.io/david/dev/staart/api-v2.svg)](https://david-dm.org/staart/api-v2) ![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/staart/api-v2.svg) |
+| Community | [![Contributors](https://img.shields.io/github/contributors/staart/api-v2.svg)](https://github.com/staart/api-v2/graphs/contributors) [![GitHub](https://img.shields.io/github/license/staart/api-v2.svg)](https://github.com/staart/api-v2/blob/master/LICENSE) ![Type definitions](https://img.shields.io/badge/types-TypeScript-blue.svg) |
 
 ## New features in v2
 

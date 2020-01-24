@@ -6,10 +6,11 @@ import { UsersService } from "./users.service";
 import { UsersController } from "./users.controller";
 import { GeolocationService } from "../providers/geolocation.service";
 import { StringUtilsService } from "../providers/stringutils.service";
+import { ShortIdService } from "src/providers/shortid.service";
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
-  providers: [UsersService, GeolocationService, StringUtilsService],
+  providers: [UsersService, GeolocationService, StringUtilsService, ShortIdService],
   controllers: [UsersController],
   exports: [UsersService]
 })

@@ -4,8 +4,7 @@ import {
   IsDefined,
   IsString,
   IsNumber,
-  IsBoolean,
-  IsEnum
+  IsBoolean
 } from "class-validator";
 import { CrudValidationGroups } from "@nestjsx/crud";
 import {
@@ -21,6 +20,11 @@ export class User {
   @IsOptional({ always: true })
   @PrimaryGeneratedColumn()
   id: number;
+
+  @IsOptional({ always: true })
+  @IsString({ always: true })
+  @Column()
+  username: string;
 
   @IsOptional({ always: true })
   @IsString({ always: true })

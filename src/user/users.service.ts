@@ -1,17 +1,19 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, ConflictException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { TypeOrmCrudService } from "@nestjsx/crud-typeorm";
 import { User } from "./user.entity";
 import { Repository } from "typeorm";
 import { GeolocationService } from "src/providers/geolocation.service";
 import { StringUtilsService } from "src/providers/stringutils.service";
+import { ShortIdService } from "src/providers/shortid.service";
 
 @Injectable()
 export class UsersService extends TypeOrmCrudService<User> {
   constructor(
     @InjectRepository(User) repo: Repository<User>,
     public geolocationService: GeolocationService,
-    public stringUtilsService: StringUtilsService
+    public stringUtilsService: StringUtilsService,
+    public shortIdService: ShortIdService
   ) {
     super(repo);
   }
@@ -20,6 +22,8 @@ export class UsersService extends TypeOrmCrudService<User> {
     dto = this.deleteSudoValuesFromNewUser(dto);
     dto = await this.addDefaultValuesToNewUser(dto, ipAddress);
     dto = this.normalizeUserNamesCase(dto);
+    if (await this.checkIfUsernameExists(dto.username))
+      throw new ConflictException("Username already in use");
     return dto;
   }
 
@@ -36,6 +40,7 @@ export class UsersService extends TypeOrmCrudService<User> {
 
   private async addDefaultValuesToNewUser(dto: User, ipAddress: string) {
     dto.nickname = dto.nickname || dto.name.split(" ")[0];
+    dto.username = dto.username || this.shortIdService.generate(dto.nickname);
     if (!dto.countryCode || !dto.timezone) {
       try {
         const location = await this.geolocationService.getGeolocationFromIp(
@@ -50,5 +55,14 @@ export class UsersService extends TypeOrmCrudService<User> {
       }
     }
     return dto;
+  }
+
+  private async checkIfUsernameExists(username: string) {
+    try {
+      await this.findOne({ username });
+      return true;
+    } catch {
+      return false;
+    }
   }
 }

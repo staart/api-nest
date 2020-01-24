@@ -1,16 +1,11 @@
 import { Injectable } from "@nestjs/common";
-import shortid from "shortid";
-
-shortid.characters("0123456789abcdefghijklmnopqrstuvwxyz");
+import generate from "nanoid/generate";
 
 @Injectable()
 export class ShortIdService {
   generate(prefix?: string) {
-    if (prefix) return `${prefix.toLowerCase()}-${shortid.generate()}`;
-    return shortid.generate();
-  }
-
-  isValid(id: string) {
-    return shortid.isValid(id);
+    const ID = generate("0123456789abcdefghijklmnopqrstuvwxyz", 10);
+    if (prefix) return `${prefix.toLowerCase()}-${ID}`;
+    return ID;
   }
 }

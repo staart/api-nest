@@ -4,12 +4,14 @@ import { TypeOrmCrudService } from "@nestjsx/crud-typeorm";
 import { User } from "./user.entity";
 import { Repository } from "typeorm";
 import { GeolocationService } from "src/providers/geolocation.service";
+import { StringUtilsService } from "src/providers/stringutils.service";
 
 @Injectable()
 export class UsersService extends TypeOrmCrudService<User> {
   constructor(
     @InjectRepository(User) repo: Repository<User>,
-    public geolocationService: GeolocationService
+    public geolocationService: GeolocationService,
+    public stringUtilsService: StringUtilsService
   ) {
     super(repo);
   }
@@ -17,11 +19,18 @@ export class UsersService extends TypeOrmCrudService<User> {
   public async safeNewUserValue(dto: User, ipAddress: string) {
     dto = this.deleteSudoValuesFromNewUser(dto);
     dto = await this.addDefaultValuesToNewUser(dto, ipAddress);
+    dto = this.normalizeUserNamesCase(dto);
     return dto;
   }
 
   private deleteSudoValuesFromNewUser(dto: User) {
     delete dto.role;
+    return dto;
+  }
+
+  private normalizeUserNamesCase(dto: User) {
+    dto.name = this.stringUtilsService.upperFirstAndLastWord(dto.name);
+    dto.nickname = this.stringUtilsService.upperFirst(dto.nickname);
     return dto;
   }
 

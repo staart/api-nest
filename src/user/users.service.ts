@@ -3,9 +3,9 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { TypeOrmCrudService } from "@nestjsx/crud-typeorm";
 import { User } from "./user.entity";
 import { Repository } from "typeorm";
-import { GeolocationService } from "src/providers/geolocation.service";
-import { StringUtilsService } from "src/providers/stringutils.service";
-import { ShortIdService } from "src/providers/shortid.service";
+import { GeolocationService } from "../providers/geolocation.service";
+import { StringUtilsService } from "../providers/stringutils.service";
+import { ShortIdService } from "../providers/shortid.service";
 
 @Injectable()
 export class UsersService extends TypeOrmCrudService<User> {

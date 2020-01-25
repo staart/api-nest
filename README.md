@@ -15,6 +15,8 @@ Staart is a Node.js backend starter for SaaS startups written in TypeScript. It 
 - OpenAPI JSON endpoint and Swagger UI
 - [TypeORM](https://github.com/typeorm/typeorm) as database driver wirh ORM
 - [CRUD](https://docs.nestjs.com/recipes/crud-utilities) filtering, pagination, sorting, relations, cache
+- Authentication
+  - Check if password has been pwned
 
 ## Installation
 

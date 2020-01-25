@@ -1,7 +1,15 @@
-import { Controller, Get, Post, Request, UseGuards } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
+  Body
+} from "@nestjs/common";
 import { AppService } from "./app.service";
 import { AuthGuard } from "@nestjs/passport";
 import { AuthService } from "./auth/auth.service";
+import { PwnedPasswordBody } from "./auth/auth.entity";
 
 @Controller()
 export class AppController {
@@ -19,5 +27,12 @@ export class AppController {
   @Post("auth/login")
   async login(@Request() req: any) {
     return this.authService.login(req.user);
+  }
+
+  @Post("auth/password/breaches")
+  async getNumberOfPasswordBreaches(@Body() passwordBody: PwnedPasswordBody) {
+    return await this.authService.numberOfPasswordBreaches(
+      passwordBody.password
+    );
   }
 }

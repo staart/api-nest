@@ -16,7 +16,7 @@ import {
   UsernameAvailableBody
 } from "./auth.entity";
 import { UserRequest } from "./auth.interfaces";
-import { UsersService } from "src/user/users.service";
+import { UsersService } from "../user/users.service";
 
 @ApiTags("auth")
 @Controller("auth")

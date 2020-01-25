@@ -15,6 +15,7 @@ import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix("v2");
 
   const options = new DocumentBuilder()
     .setTitle("Staart API")

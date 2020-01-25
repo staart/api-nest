@@ -1,6 +1,7 @@
 import { NestFactory } from "@nestjs/core";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import { CrudConfigService } from "@nestjsx/crud";
+import helmet from "helmet";
 
 CrudConfigService.load({
   query: {

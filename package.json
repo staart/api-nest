@@ -94,8 +94,7 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "timeout": 30000
+    "testEnvironment": "node"
   },
   "husky": {
     "hooks": {

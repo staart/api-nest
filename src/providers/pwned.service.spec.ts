@@ -2,7 +2,7 @@ import { PwnedService } from "./pwned.service";
 const pwnedService = new PwnedService();
 
 const BREACHED = "password123";
-const NOT_BREACHED = `1abc9c-${Math.random().toString()}`;
+const NOT_BREACHED = "kjRl4TwdnlYtk8FhVyUU";
 
 describe("PwnedService", () => {
   describe("check if password is breached", () => {

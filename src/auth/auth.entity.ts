@@ -8,6 +8,11 @@ export class LoginBody {
   password: string;
 }
 
+export class UsernameAvailableBody {
+  @ApiProperty()
+  username: string;
+}
+
 export class PwnedPasswordBody {
   @ApiProperty()
   password: string;

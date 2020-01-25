@@ -64,4 +64,8 @@ export class UsersService extends TypeOrmCrudService<User> {
       return false;
     }
   }
+
+  async checkIfUsernameAvailable(username: string) {
+    return !(await this.checkIfUsernameExists(username));
+  }
 }

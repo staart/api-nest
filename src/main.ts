@@ -2,6 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import { CrudConfigService } from "@nestjsx/crud";
 import helmet from "helmet";
+import responseTime from "response-time";
 
 CrudConfigService.load({
   query: {
@@ -24,6 +25,9 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup("api", app, document);
+
+  app.use(helmet({ hsts: { maxAge: 31536000, preload: true } }));
+  app.use(responseTime());
 
   await app.listen(3000);
 }

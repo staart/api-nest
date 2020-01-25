@@ -1,4 +1,5 @@
 [![Staart API](https://raw.githubusercontent.com/staart/staart.js.org/master/assets/svg/api.svg?sanitize=true)](https://staart.js.org/api)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fstaart%2Fapi-v2.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fstaart%2Fapi-v2?ref=badge_shield)
 
 Staart is a Node.js backend starter for SaaS startups written in TypeScript. It has built-in user management and authentication, billing, organizations, GDPR tools, and more.
 
@@ -55,3 +56,7 @@ $ npm run test:cov
 - Remove `"no-console": false` rule from `tslint.json`
 - Migrate TSLint to ESLint
 - Remove `--forceExit` flag from Jest test, add `afterAll()` to close geolocation
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fstaart%2Fapi-v2.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fstaart%2Fapi-v2?ref=badge_large)

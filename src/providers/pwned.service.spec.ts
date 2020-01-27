@@ -1,5 +1,6 @@
 import { PwnedService } from "./pwned.service";
 const pwnedService = new PwnedService();
+jest.setTimeout(30000);
 
 const BREACHED = "password123";
 

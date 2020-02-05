@@ -8,6 +8,14 @@ export class LoginBody {
   password: string;
 }
 
+export class RegisterBody {
+  @ApiProperty()
+  name: string;
+
+  @ApiProperty()
+  email: string;
+}
+
 export class UsernameAvailableBody {
   @ApiProperty()
   username: string;

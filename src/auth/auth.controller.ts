@@ -5,18 +5,21 @@ import {
   Request,
   Body,
   HttpCode,
-  HttpStatus
+  HttpStatus,
+  Ip
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { ApiTags } from "@nestjs/swagger";
 import { AuthGuard } from "@nestjs/passport";
 import {
   LoginBody,
+  RegisterBody,
   PwnedPasswordBody,
   UsernameAvailableBody
 } from "./auth.entity";
 import { UserRequest } from "./auth.interfaces";
 import { UsersService } from "../user/users.service";
+import { User } from "../user/user.entity";
 
 @ApiTags("auth")
 @Controller("auth")
@@ -31,6 +34,20 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   async login(@Request() req: UserRequest, @Body() loginBody: LoginBody) {
     return this.authService.login(req.user);
+  }
+
+  @Post("register")
+  async register(
+    @Request() req: UserRequest,
+    @Ip() ipAddress: string,
+    @Body() registerBody: RegisterBody
+  ) {
+    const registerUser = new User();
+    const primaryEmailId = 32;
+    registerUser.name = registerBody.name;
+    registerUser.primaryEmailId = primaryEmailId;
+    const user = this.userService.safeNewUserValue(registerUser, ipAddress);
+    return user;
   }
 
   @Post("username-available")

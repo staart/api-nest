@@ -41,7 +41,7 @@ export class UsersService extends TypeOrmCrudService<User> {
   private async addDefaultValuesToNewUser(dto: User, ipAddress: string) {
     dto.nickname = dto.nickname || dto.name.split(" ")[0];
     dto.username = dto.username || this.shortIdService.generate(dto.nickname);
-    if (!dto.countryCode || !dto.timezone) {
+    if (!(dto.countryCode && dto.timezone)) {
       const location = await this.geolocationService.getGeolocationFromIp(
         ipAddress
       );

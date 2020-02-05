@@ -6,6 +6,7 @@ import { Repository } from "typeorm";
 import { GeolocationService } from "../providers/geolocation.service";
 import { StringUtilsService } from "../providers/stringutils.service";
 import { ShortIdService } from "../providers/shortid.service";
+import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
 
 @Injectable()
 export class UsersService extends TypeOrmCrudService<User> {
@@ -16,6 +17,17 @@ export class UsersService extends TypeOrmCrudService<User> {
     public shortIdService: ShortIdService
   ) {
     super(repo);
+  }
+
+  public async safeCreateUser(dto: User, ipAddress: string) {
+    dto = await this.safeNewUserValue(dto, ipAddress);
+    return await this.repo.save(dto);
+  }
+  public async safeUpdateUser(id: number, user: QueryDeepPartialEntity<User>) {
+    return await this.repo.update({ id }, user);
+  }
+  public async safeGetUser(id: number) {
+    return await this.repo.findOne(id);
   }
 
   public async safeNewUserValue(dto: User, ipAddress: string) {

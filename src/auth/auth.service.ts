@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { UsersService } from "../user/users.service";
+import { ContactsService } from "../contact/contact.service";
 import { JwtService } from "@nestjs/jwt";
 import { PwnedService } from "../providers/pwned.service";
 import { User } from "../user/user.entity";
@@ -10,6 +11,7 @@ import { RegisterBody } from "./auth.entity";
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
+    private readonly contactsService: ContactsService,
     private readonly jwtService: JwtService,
     private readonly pwnedService: PwnedService
   ) {}
@@ -44,11 +46,23 @@ export class AuthService {
 
   async register(registerBody: RegisterBody, ipAddress: string) {
     const registerUser = new User();
-    const primaryEmailId = 32;
-    registerUser.name = registerBody.name;
-    registerUser.primaryEmailId = primaryEmailId;
-    const user = this.usersService.safeNewUserValue(registerUser, ipAddress);
-    return user;
+    for (const userProperty in registerBody) {
+      if (!["email", "countryCode", "phone"].includes(userProperty)) {
+        registerUser[userProperty] = registerBody[userProperty];
+      }
+    }
+    registerUser.primaryEmailId = 0;
+    const createdUserId = (
+      await this.usersService.safeCreateUser(registerUser, ipAddress)
+    ).id;
+    const newEmail = await this.contactsService.createEmailForUser(
+      createdUserId,
+      registerBody.email
+    );
+    await this.usersService.safeUpdateUser(createdUserId, {
+      primaryEmailId: newEmail.id
+    });
+    return await this.usersService.safeGetUser(createdUserId);
   }
 
   async numberOfPasswordBreaches(password: string) {

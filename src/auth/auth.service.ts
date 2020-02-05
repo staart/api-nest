@@ -51,16 +51,18 @@ export class AuthService {
         registerUser[userProperty] = registerBody[userProperty];
       }
     }
-    registerUser.primaryEmailId = 0;
-    const createdUserId = (
-      await this.usersService.safeCreateUser(registerUser, ipAddress)
-    ).id;
+    registerUser.primaryEmail = null;
+    const user = await this.usersService.safeCreateUser(
+      registerUser,
+      ipAddress
+    );
+    const createdUserId = user.id;
     const newEmail = await this.contactsService.createEmailForUser(
-      createdUserId,
+      user,
       registerBody.email
     );
     await this.usersService.safeUpdateUser(createdUserId, {
-      primaryEmailId: newEmail.id
+      primaryEmail: newEmail
     });
     return await this.usersService.safeGetUser(createdUserId);
   }

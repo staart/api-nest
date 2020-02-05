@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import {
   IsOptional,
   IsDefined,
@@ -8,6 +8,7 @@ import {
 } from "class-validator";
 import { CrudValidationGroups } from "@nestjsx/crud";
 import { ContactTypes } from "./contact.interfaces";
+import { User } from "../user/user.entity";
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 
@@ -17,10 +18,14 @@ export class Contact {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @IsDefined({ always: true })
-  @IsNumber(undefined, { always: true })
-  @Column()
-  userId: number;
+  @IsOptional({ groups: [UPDATE] })
+  @IsDefined({ groups: [CREATE] })
+  @ManyToOne(
+    type => User,
+    user => user.contacts,
+    { onDelete: "CASCADE" }
+  )
+  user: User;
 
   @IsDefined({ always: true })
   @IsString({ always: true })

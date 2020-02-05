@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  OneToOne,
+  JoinColumn
+} from "typeorm";
 import {
   IsOptional,
   IsDefined,
@@ -12,6 +19,7 @@ import {
   UserGenders,
   UserNotificationEmails
 } from "./user.interfaces";
+import { Contact } from "../contact/contact.entity";
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 
@@ -53,9 +61,21 @@ export class User {
 
   @IsOptional({ groups: [UPDATE] })
   @IsDefined({ groups: [CREATE] })
-  @IsNumber({}, { always: true })
-  @Column({ type: "int" })
-  primaryEmailId: number;
+  @OneToMany(
+    type => Contact,
+    contact => contact.user,
+    { onDelete: "NO ACTION" }
+  )
+  contacts: Contact[];
+
+  @IsOptional({ groups: [UPDATE] })
+  @IsDefined({ groups: [CREATE] })
+  @OneToOne(type => Contact, {
+    nullable: true,
+    onDelete: "RESTRICT"
+  })
+  @JoinColumn()
+  primaryEmail: Contact;
 
   @IsOptional({ always: true })
   @IsString({ always: true })

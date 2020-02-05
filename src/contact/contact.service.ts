@@ -4,6 +4,7 @@ import { TypeOrmCrudService } from "@nestjsx/crud-typeorm";
 import { Contact } from "./contact.entity";
 import { Repository } from "typeorm";
 import { ContactTypes } from "./contact.interfaces";
+import { User } from "../user/user.entity";
 
 @Injectable()
 export class ContactsService extends TypeOrmCrudService<Contact> {
@@ -11,9 +12,9 @@ export class ContactsService extends TypeOrmCrudService<Contact> {
     super(repo);
   }
 
-  public async createEmailForUser(userId: number, email: string) {
+  public async createEmailForUser(user: User, email: string) {
     return await this.repo.save({
-      userId,
+      user,
       type: ContactTypes.EMAIL,
       value: email,
       verified: false

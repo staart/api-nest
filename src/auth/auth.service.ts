@@ -3,6 +3,7 @@ import { UsersService } from "../user/users.service";
 import { JwtService } from "@nestjs/jwt";
 import { PwnedService } from "../providers/pwned.service";
 import { User } from "../user/user.entity";
+import { jwtConstants } from "./constants";
 
 @Injectable()
 export class AuthService {
@@ -22,9 +23,21 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const payload = { username: user.username, sub: user.id };
     return {
-      access_token: this.jwtService.sign(payload)
+      access_token: this.jwtService.sign({
+        type: "access",
+        username: user.username,
+        sub: user.id
+      }),
+      refresh_token: this.jwtService.sign(
+        {
+          type: "refresh",
+          sub: user.id
+        },
+        {
+          expiresIn: jwtConstants.refreshTokenExpiry
+        }
+      )
     };
   }
 

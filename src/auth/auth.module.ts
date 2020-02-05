@@ -7,10 +7,12 @@ import { JwtModule } from "@nestjs/jwt";
 import { jwtConstants } from "./constants";
 import { PwnedService } from "../providers/pwned.service";
 import { AuthController } from "./auth.controller";
+import { ContactsModule } from "../contact/contact.module";
 
 @Module({
   imports: [
     UsersModule,
+    ContactsModule,
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,

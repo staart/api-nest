@@ -4,15 +4,11 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   OneToOne,
-  JoinColumn
+  JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn
 } from "typeorm";
-import {
-  IsOptional,
-  IsDefined,
-  IsString,
-  IsNumber,
-  IsBoolean
-} from "class-validator";
+import { IsOptional, IsDefined, IsString, IsBoolean } from "class-validator";
 import { CrudValidationGroups } from "@nestjsx/crud";
 import {
   UserRoles,
@@ -138,4 +134,14 @@ export class User {
   @IsBoolean({ always: true })
   @Column({ type: "boolean", default: false })
   prefersColorSchemeDark: boolean;
+
+  /**
+   * Created and updated times
+   */
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

@@ -1,11 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import {
-  IsOptional,
-  IsDefined,
-  IsString,
-  IsNumber,
-  IsBoolean
-} from "class-validator";
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn
+} from "typeorm";
+import { IsOptional, IsDefined, IsString, IsBoolean } from "class-validator";
 import { CrudValidationGroups } from "@nestjsx/crud";
 import { ContactTypes } from "./contact.interfaces";
 import { User } from "../user/user.entity";
@@ -47,4 +48,14 @@ export class Contact {
   @IsBoolean({ always: true })
   @Column({ default: false })
   verified: boolean;
+
+  /**
+   * Created and updated times
+   */
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

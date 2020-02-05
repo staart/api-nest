@@ -42,17 +42,13 @@ export class UsersService extends TypeOrmCrudService<User> {
     dto.nickname = dto.nickname || dto.name.split(" ")[0];
     dto.username = dto.username || this.shortIdService.generate(dto.nickname);
     if (!dto.countryCode || !dto.timezone) {
-      try {
-        const location = await this.geolocationService.getGeolocationFromIp(
-          ipAddress
-        );
-        dto.countryCode =
-          dto.countryCode || location.country.iso_code.toLowerCase();
-        dto.timezone = dto.timezone || location.location.time_zone;
-      } catch {
-        dto.countryCode = dto.countryCode || "us";
-        dto.timezone = dto.timezone || "America/Los_Angeles";
-      }
+      const location = await this.geolocationService.getGeolocationFromIp(
+        ipAddress
+      );
+      dto.countryCode =
+        dto.countryCode || location.country.iso_code.toLowerCase() || "us";
+      dto.timezone =
+        dto.timezone || location.location.time_zone || "America/Los_Angeles";
     }
     return dto;
   }

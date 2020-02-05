@@ -10,6 +10,7 @@ import { User } from "./user/user.entity";
 import { UsersModule } from "./user/users.module";
 import { ContactsModule } from "./contact/contact.module";
 import { AuthModule } from "./auth/auth.module";
+import { Contact } from "./contact/contact.entity";
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { AuthModule } from "./auth/auth.module";
       username: process.env.DB_USERNAME || "root",
       password: process.env.DB_PASSWORD || "root",
       database: process.env.DB_DATABASE || "test",
-      entities: [User],
+      entities: [User, Contact],
       synchronize: true
     }),
     ServeStaticModule.forRoot({

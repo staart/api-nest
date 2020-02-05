@@ -42,12 +42,7 @@ export class AuthController {
     @Ip() ipAddress: string,
     @Body() registerBody: RegisterBody
   ) {
-    const registerUser = new User();
-    const primaryEmailId = 32;
-    registerUser.name = registerBody.name;
-    registerUser.primaryEmailId = primaryEmailId;
-    const user = this.userService.safeNewUserValue(registerUser, ipAddress);
-    return user;
+    return this.authService.register(registerBody, ipAddress);
   }
 
   @Post("username-available")

@@ -14,7 +14,7 @@ export class GeolocationService {
   }
 
   async getGeolocationFromIp(ipAddress: string) {
-    if (ipAddress === "::1") ipAddress = "182.64.221.140";
+    if (ipAddress === "::1") ipAddress = "130.89.88.184";
     await this.initializeService();
     return this.lookup.get(ipAddress);
   }

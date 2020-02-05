@@ -23,7 +23,7 @@ export class User {
 
   @IsOptional({ always: true })
   @IsString({ always: true })
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @IsOptional({ always: true })

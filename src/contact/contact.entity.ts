@@ -35,7 +35,7 @@ export class Contact {
   @IsOptional({ groups: [UPDATE] })
   @IsDefined({ groups: [CREATE] })
   @IsString({ always: true })
-  @Column({ unique: true })
+  @Column()
   value: string;
 
   @IsOptional({ always: true })

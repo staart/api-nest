@@ -20,4 +20,16 @@ export class ContactsService extends TypeOrmCrudService<Contact> {
       verified: false
     });
   }
+
+  private async checkIfContactExists(type: ContactTypes, value: string) {
+    try {
+      return !!(await this.findOne({ type, value, verified: true }));
+    } catch {
+      return false;
+    }
+  }
+
+  async checkIfContactAvailable(type: ContactTypes, value: string) {
+    return !(await this.checkIfContactExists(type, value));
+  }
 }

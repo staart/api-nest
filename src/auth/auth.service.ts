@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, ConflictException } from "@nestjs/common";
 import { UsersService } from "../user/users.service";
 import { ContactsService } from "../contact/contact.service";
 import { JwtService } from "@nestjs/jwt";
@@ -6,6 +6,7 @@ import { PwnedService } from "../providers/pwned.service";
 import { User } from "../user/user.entity";
 import { jwtConstants } from "./constants";
 import { RegisterBody } from "./auth.entity";
+import { ContactTypes } from "../contact/contact.interfaces";
 
 @Injectable()
 export class AuthService {
@@ -45,6 +46,13 @@ export class AuthService {
   }
 
   async register(registerBody: RegisterBody, ipAddress: string) {
+    if (
+      !(await this.contactsService.checkIfContactAvailable(
+        ContactTypes.EMAIL,
+        registerBody.email
+      ))
+    )
+      throw new ConflictException("Email already in use");
     const registerUser = new User();
     for (const userProperty in registerBody) {
       if (!["email", "countryCode", "phone"].includes(userProperty)) {

@@ -1,8 +1,6 @@
 [![Staart API](https://raw.githubusercontent.com/staart/staart.js.org/master/assets/svg/api.svg?sanitize=true)](https://staart.js.org/api)
 
-Staart is a Node.js backend starter for SaaS startups written in TypeScript. It has built-in user management and authentication, billing, organizations, GDPR tools, and more.
-
-**This branch contains the development version of Staart API written using NestJS. [Visit stable v1 repo →](https://github.com/staart/api)**
+**⚠️ This repository contains a development version of Staart API written using NestJS. This is unsupported, incomplete, and should only be used on your own risk. [Visit stable repository →](https://github.com/staart/api)**
 
 |  | Status |
 | - | - |
@@ -10,7 +8,7 @@ Staart is a Node.js backend starter for SaaS startups written in TypeScript. It 
 | Dependencies | [![Dependencies](https://img.shields.io/david/staart/api-v2.svg)](https://david-dm.org/staart/api-v2) [![Dev dependencies](https://img.shields.io/david/dev/staart/api-v2.svg)](https://david-dm.org/staart/api-v2) ![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/staart/api-v2.svg) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fstaart%2Fapi-v2.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fstaart%2Fapi-v2?ref=badge_shield) |
 | Community | [![Codacy grade](https://img.shields.io/codacy/grade/403c8644e13e47df878156f3658220ce)](https://www.codacy.com/manual/AnandChowdhary/uppload) [![Code maintainability](https://img.shields.io/codeclimate/maintainability/staart/api-v2)](https://codeclimate.com/github/staart/api-v2) [![Contributors](https://img.shields.io/github/contributors/staart/api-v2.svg)](https://github.com/staart/api-v2/graphs/contributors) [![GitHub](https://img.shields.io/github/license/staart/api-v2.svg)](https://github.com/staart/api-v2/blob/master/LICENSE) ![Type definitions](https://img.shields.io/badge/types-TypeScript-blue.svg) |
 
-## New features in v2
+## Development features
 
 - OpenAPI JSON endpoint and Swagger UI
 - [TypeORM](https://github.com/typeorm/typeorm) as database driver wirh ORM
